@@ -14,15 +14,17 @@ from iStat.api.models import *
 
 @csrf_exempt
 def send_page (request):
-    if request.method == 'POST':
-        url = request.POST.get('url')
-        title = request.POST.get('title')
+    if request.method == 'GET':
+        url = request.GET.get('url')
+        title = request.GET.get('title')
         this_ip = get_ip_from_request(request)
+       
+        if url is None or title is None:
+            return HttpResponse("error in params")
         
         website_url = re.match("http://(?P<url>[\w.\-:]+)", url)
         if website_url is None:
             return HttpResponse("error matching website")
-        print website_url.groups()
         website_url = website_url.group('url')
         
         website = get_object_or_None(WebSite, url = website_url)
@@ -39,6 +41,9 @@ def send_page (request):
         if entry is None:
             entry = Entry(timestamp = datetime.datetime.now(), page = page, ip = this_ip)
             entry.save()
+            
+        page.cached_views += 1
+        page.save()
         
         return render_to_response("send_page.json",
                                  {
@@ -48,3 +53,23 @@ def send_page (request):
                                  context_instance = RequestContext(request)
                                 )
     return HttpResponse("")
+
+
+@csrf_exempt
+def get_most_visited_pages (request):
+    if request.method == 'GET':
+        url = request.GET.get('website')
+        
+        if url is None:
+            return HttpResponse("error in params")
+        website = get_object_or_None(WebSite, url = url)
+        
+        pages = Page.objects.filter(website = website).order_by("-cached_views")
+        
+        return render_to_response("get_most_visited_pages.json",
+                                  {
+                                    'pages' : pages,
+                                    'website' : website,
+                                  },
+                                  context_instance = RequestContext(request)
+                                 )

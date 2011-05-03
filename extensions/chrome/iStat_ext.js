@@ -4,26 +4,37 @@
 
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
-	/*
-	var shortDomain=getDomain(tab.url,"noSubOrWwwDomain");
-	var req = new XMLHttpRequest();
-	req.open(
-	    "GET",
-	    "http://localhost:8000/api/get-list" +
-	    "?url=" +
-	    shortDomain,
-	    true);
-	req.onload = function(){
-		urlArray = req.responseXML.getElementsByTagName("url_list");
-	};
-	req.send(null);
-	*/
-	
-    domain = getDomain(tab.url);
-    shortDomain = getDomain(tab.url, "noSubOrWwwDomain");
-    subDomain = getDomain(tab.url, "noWwwDomain");
-    alert(window.shortDomain);
-    //chrome.browserAction.setTitle({'title': tooltip, 'tabId': tab.id})
+	console.log(changeInfo.status);
+	if ( changeInfo.status == "complete" ) {
+		window.domain = getDomain(tab.url);
+	    window.shortDomain = getDomain(tab.url, "noSubOrWwwDomain");
+	    window.subDomain = getDomain(tab.url, "noWwwDomain");
+		console.log(tab.url);
+		//console.log(tab.title);
+		var req2 = new XMLHttpRequest();
+		req2.open(
+		    "GET",
+		    "http://localhost:8000/api/send-page" +
+		        "?url=" +
+		        tab.url +
+				"&title=" +
+				tab.title,
+		    true);
+		req2.send(null);
+		
+		var req = new XMLHttpRequest();
+		req.open(
+		    "GET",
+		    "http://localhost:8000/api/most-visited" +
+		        "?website=http://" +
+		        window.shortDomain,
+		    true);
+		req.onload = function(){
+			//window.urlArray = req.responseXML.getElementsByTagName("url_list");
+		};
+		req.send(null);
+	    //chrome.browserAction.setTitle({'title': tooltip, 'tabId': tab.id})	
+	}
 });
 
 
@@ -41,35 +52,19 @@ function onAnchorClick(event) {
 // browser action popup.
 function buildPopup(divName, data) {
   var popupDiv = document.getElementById(divName);
-
-  //var ul = document.createElement('ul');
-  //popupDiv.appendChild(ul);
-	alert(data);
-	alert(data.length);
   for (var i = 0, ie = data.length; i < ie; ++i) {
     var a = document.createElement('a');
     a.href = data[i];
     a.appendChild(document.createTextNode(data[i]));//poate in loc de url, punem numele paginii
     a.addEventListener('click', onAnchorClick);
-
-    //var li = document.createElement('li');
-    //li.appendChild(a);
+	
 	popupDiv.appendChild(a);
 	popupDiv.appendChild(br);
-    //ul.appendChild(li);
   }
 }
 
 
-function buildUrlList(divName,url_list) {
-  	
-  	//var microsecunde = 1000 * 60 * 60 * 2;
-  	//var twoHoursAgo = (new Date).getTime() - microsecunde;
-  	
-	//var shortDomain = getDomain(tab.url, "noSubOrWwwDomain");
-	   
-    
-  	
+function buildUrlList(divName,url_list) {  	
 	buildPopup(divName, window.urlArray);
   
 }
