@@ -1,0 +1,11 @@
+{
+  "background_page": "background.html",
+  "name": "iStat Page Statistics",
+  "version": "1.0",
+  "description": "bla bla blah",
+  "permissions": ["tabs", "http://*/"],
+  "browser_action": {
+    "default_popup": "iStat_ext.html"
+  }
+}
+

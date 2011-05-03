@@ -14,9 +14,9 @@ from iStat.api.models import *
 
 @csrf_exempt
 def send_page (request):
-    if request.method == 'GET':
-        url = request.GET.get('url')
-        title = request.GET.get('title')
+    if request.method == 'POST':
+        url = request.POST.get('url')
+        title = request.POST.get('title')
         this_ip = get_ip_from_request(request)
         
         website_url = re.match("http://(?P<url>[\w.\-:]+)", url)
