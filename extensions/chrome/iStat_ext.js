@@ -52,37 +52,71 @@ function buildPopup(divName, data) {
 }
 
 
-function buildUrlList(divName,url_list) {  	
+function buildUrlList(divName,url_list) {
 	
 	
 	//console.log(changeInfo.status);
 	//if ( changeInfo.status == "complete" ) {
 		
 		
-	var tabUrl;
+	//var tabUrl;
 	chrome.tabs.getSelected(null, function(tab) {
-    tabUrl=tab.url;
+    	window.tabUrl=tab.url;
+    	//alert(tabUrl);
   	});
-  	alert(tabUrl);
+	alert(window.tabUrl);
   	
-	console.log(tabUrl);
+	//console.log(tabUrl);
 	
 	//console.log(tab.title);
   	
   	var req = new XMLHttpRequest();
-		req.open(
-		    "GET",
-		    "http://localhost:8000/api/most-visited" +
-		        "?website=" +
-		        tabUrl,
-		    true);
-		//req.onload = function(){
-			//urlArray = req.responseXML.getElementsByTagName("url");
-		//};
-		req.send(null);
+	req.open(
+	    "GET",
+	    "http://localhost:8000/api/most-visited" +
+	        "?website='" +
+	        tabUrl +
+	        "'",
+	    true);
+	req.onreadystatechange=function() {
+		if (req.readyState==4) {
+			if(req.status!=404){
+				//alert(req.responseText);				
+				//var rez = jsonParse(req.toString());
+				//alert(req.toString);
+				//buildPopup(divName, rez);
+			}
+		}
+	}
+	//req.onload = function(){
+		//urlArray = req.responseXML.getElementsByTagName("url");
+	//};
+	req.send(null);
 	
-	urlArray = new Array();
-	urlArray[0]=tabUrl;
-	buildPopup(divName, urlArray);
+	
+		var myJson = '{ "page1": { "title": "infoarena", "long_url": "http://infoarena.ro/", "short_url": "", "cached_views": 10 },	"page2": { "title": "aaa", "long_url": "http://bbb.com", "short_url": "", "cached_views": 128 }';	//'{ "url" : "http://example.com/page/4", "title" : "Example page 4", "visited-counter" : 102, "url" : "http://secondurl.com/", "title" : "secondtitle", "visited-counter" : 555 }';	//}	{	“url” : “http://example.com/page/5”,	“title” : “Example page 5”,	“visited-counter” : 99	}	{	“url” : “http://example.com/page/1”,	“title” : “Example page 1”,	“visited-counter” : 21	}}';
+		//var myJson = '{ "x": "Hello, World!", "y": [1, 2, 3] }'
+		var t = jsonParse(myJson);
+		alert(t.page2.title);
+		//alert(t.url);  // alerts Hello, World!
+		for (var k in t) {
+		  // alerts x=Hello, World!  and  y=1,2,3
+		  //alert(k + '=' + t[k]);
+		  alert(k);
+		  for(var l in t[k]){
+		  	alert(l+'='+t[k][l]);
+		  }
+		}
+	
+	//urlArray = new Array();
+	//urlArray[0]=tabUrl;
+	//buildPopup(divName, urlArray);
 }
+
+
+
+
+
+
+
 

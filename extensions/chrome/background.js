@@ -10,25 +10,32 @@ function initialize() {
 }
 
 iStat.onTabUpdate = function(tabId, changeInfo, tab){
-	console.log(changeInfo.status);
 	
 	if ( changeInfo.status == "complete" ) {
 		//alert(tab.url);
 		//alert(tab.title);
-		console.log(tab.url);
+		//console.log(tab.url);
 		//console.log(tab.title);
 		var req2 = new XMLHttpRequest();
 			req2.open(
 			    "GET",
 			    "http://localhost:8000/api/send-page" +
-			        "?url=" +
+			        "?url='" +
 			        tab.url +
-					"&title=" +
-					tab.title,
+					"'&title='" +
+					tab.title
+					+"'",
 			    true);
-			// req2.onload = function(){
-		//	window.urlArray = req.responseXML.getElementsByTagName("url_list");
-		//};
+		req2.onreadystatechange=function() {
+			if (req2.readyState==4){
+				//alert("status" + req2.status);
+				if(req2.status!=404){
+					
+					//var rez = jsonParse(req2.toString());
+					
+				}
+			}
+		}
 			req2.send(null);
 	}
 
