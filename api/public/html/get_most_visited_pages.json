@@ -1,6 +1,6 @@
 {
 	{% for page in pages %}
-	{
+	"page{{ forloop.counter }}" : {
 		"title": "{{ page.title }}",
 		"long_url": "{{ page.long_url }}",
 		"short_url": "{{ page.short_url }}",
