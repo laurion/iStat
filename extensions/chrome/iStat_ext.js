@@ -2,7 +2,7 @@
  * @author laurion
  */
 
-
+/*
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
 	console.log(changeInfo.status);
 	if ( changeInfo.status == "complete" ) {
@@ -18,13 +18,13 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
 		        tab.url,
 		    true);
 		//req.onload = function(){
-			//window.urlArray = req.responseXML.getElementsByTagName("url_list");
+			//window.urlArray = req.responseXML.getElementsByTagName("url");
 		//};
 		req.send(null);
 	    //chrome.browserAction.setTitle({'title': tooltip, 'tabId': tab.id})	
 	}
 });
-
+*/
 
 // Event listner for clicks on links in a browser action popup.
 // Open the link in a new tab of the current window.
@@ -54,6 +54,22 @@ function buildPopup(divName, data) {
 
 function buildUrlList(divName,url_list) {  	
 	buildPopup(divName, window.urlArray);
-  
+	console.log(changeInfo.status);
+	if ( changeInfo.status == "complete" ) {
+		console.log(tab.url);
+		//console.log(tab.title);
+  	
+  	var req = new XMLHttpRequest();
+		req.open(
+		    "GET",
+		    "http://localhost:8000/api/most-visited" +
+		        "?website=http://" +
+		        tab.url,
+		    true);
+		//req.onload = function(){
+			//window.urlArray = req.responseXML.getElementsByTagName("url");
+		//};
+		req.send(null);
+		}
 }
 
