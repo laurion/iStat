@@ -13,7 +13,7 @@ iStat.onTabUpdate = function(tabId, changeInfo, tab){
 	console.log(changeInfo.status);
 	
 	if ( changeInfo.status == "complete" ) {
-		alert(tab.url);
+		//alert(tab.url);
 		//alert(tab.title);
 		console.log(tab.url);
 		//console.log(tab.title);

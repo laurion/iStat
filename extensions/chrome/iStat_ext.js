@@ -26,7 +26,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
 });
 */
 
-// Event listner for clicks on links in a browser action popup.
+
 // Open the link in a new tab of the current window.
 function onAnchorClick(event) {
   chrome.tabs.create({
@@ -54,22 +54,32 @@ function buildPopup(divName, data) {
 
 function buildUrlList(divName,url_list) {  	
 	buildPopup(divName, window.urlArray);
-	console.log(changeInfo.status);
-	if ( changeInfo.status == "complete" ) {
-		console.log(tab.url);
-		//console.log(tab.title);
+	
+	//console.log(changeInfo.status);
+	//if ( changeInfo.status == "complete" ) {
+		
+		
+	var tabUrl;
+	chrome.tabs.getSelected(null, function(tab) {
+    tabUrl=tab.url;
+  	});
+  	alert(tabUrl);
+  	
+	console.log(tabUrl);
+	
+	//console.log(tab.title);
   	
   	var req = new XMLHttpRequest();
 		req.open(
 		    "GET",
 		    "http://localhost:8000/api/most-visited" +
-		        "?website=http://" +
-		        tab.url,
+		        "?website=" +
+		        tabUrl,
 		    true);
 		//req.onload = function(){
 			//window.urlArray = req.responseXML.getElementsByTagName("url");
 		//};
 		req.send(null);
-		}
+		
 }
 
