@@ -3,9 +3,16 @@
   "name": "iStat Page Statistics",
   "version": "1.0",
   "description": "bla bla blah",
+  "icons": {
+      "128": "images/icon128.png",
+      "16": "images/icon16.png",
+      "32": "images/icon32.png",
+      "48": "images/icon48.png"
+   },
   "permissions": ["tabs", "http://*/"],
   "browser_action": {
-    "default_popup": "iStat_ext.html"
+    "default_icon": "images/icon48.png",
+   	"popup": "iStat_ext.html"
   }
 }
 
