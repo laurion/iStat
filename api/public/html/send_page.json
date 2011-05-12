@@ -1,4 +1,6 @@
 {
 	"message": {{ message }},
-	"return_code": {{ return_code }}
+	"return_code": {{ return_code }},
+	"title" : {{ title }},
+	"url" : {{ url }},
 }
