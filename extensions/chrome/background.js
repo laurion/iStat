@@ -3,7 +3,7 @@ iStat = {};
 
 function initialize() {
     chrome.tabs.onUpdated.addListener(iStat.onTabUpdate);//try onCreated 
-	alert('started');
+	//alert('started');
     //var tabId,tab,changeInfo;
     //iStat.onTabUpdate(tabId,changeInfo,tab);
 

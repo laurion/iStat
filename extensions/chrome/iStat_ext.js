@@ -53,7 +53,7 @@ function buildPopup(divName, data) {
 
 
 function buildUrlList(divName,url_list) {  	
-	buildPopup(divName, window.urlArray);
+	
 	
 	//console.log(changeInfo.status);
 	//if ( changeInfo.status == "complete" ) {
@@ -77,9 +77,12 @@ function buildUrlList(divName,url_list) {
 		        tabUrl,
 		    true);
 		//req.onload = function(){
-			//window.urlArray = req.responseXML.getElementsByTagName("url");
+			//urlArray = req.responseXML.getElementsByTagName("url");
 		//};
 		req.send(null);
-		
+	
+	urlArray = new Array();
+	urlArray[0]=tabUrl;
+	buildPopup(divName, urlArray);
 }
 
