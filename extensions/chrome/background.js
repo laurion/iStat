@@ -21,12 +21,11 @@ iStat.onTabUpdate = function(tabId, changeInfo, tab){
 		var req2 = new XMLHttpRequest();
 			req2.open(
 			    "GET",
-			    "http://localhost:8000/api/send\-page" +
-			        "\?url\='" +
-			        tab.url +
-					"'\&title\='" +
-					tab.title
-					+"'",
+			    "http://localhost:8000/api/send-page" +
+			        "?url='" +
+			        escape(tab.url) +
+					"'&title=" +
+					escape(tab.title),
 			    true);
 		req2.onreadystatechange=function() {
 			if (req2.readyState==4){

@@ -76,20 +76,24 @@ function buildUrlList(divName,url_list) {
   	var req = new XMLHttpRequest();
 	req.open(
 	    "GET",
-	    "http://localhost:8000/api/most\-visited" +
-	        "\?website\='" +
-	        tabUrl +
+	    "http://localhost:8000/api/most-visited" +
+	        "?website='" +
+	        escape(tabUrl) +
 	        "'",
 	    true);
 	req.onreadystatechange=function() {
 		if (req.readyState==4) {
-			alert(req.status);
+			alert("status: " + req.status);
 			if(req.status!=404){
 				//alert(req.responseText);				
 				//var rez = jsonParse(req.toString());
 				var obj = jQuery.parseJSON(req.responseText);
 			  	for (i = 0; i < obj.pages.length; i ++) {
 			    	alert(obj.pages[i].long_url);
+			    	if(obj.pages[i].long_url)
+			    		alert("json parsing works");
+			    	else
+			    		alert("json parsing didn't work");
 			    	data.push({ url: obj.pages[i].long_url, title: obj.pages[i].title, views: obj.pages[i].cached_views });
 			  	}
 				//alert(req.toString);
