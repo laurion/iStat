@@ -12,7 +12,7 @@
   "permissions": ["tabs", "http://*/"],
   "browser_action": {
     "default_icon": "images/icon48.png",
-   	"popup": "iStat_ext.html"
+   	"popup": "popup.html"
   }
 }
 

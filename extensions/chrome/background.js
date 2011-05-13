@@ -16,13 +16,15 @@ iStat.onTabUpdate = function(tabId, changeInfo, tab){
 		//alert(tab.title);
 		//console.log(tab.url);
 		//console.log(tab.title);
+		if(tab.url == "chrome://newtab/")
+			return;
 		var req2 = new XMLHttpRequest();
 			req2.open(
 			    "GET",
-			    "http://localhost:8000/api/send-page" +
-			        "?url='" +
+			    "http://localhost:8000/api/send\-page" +
+			        "\?url\='" +
 			        tab.url +
-					"'&title='" +
+					"'\&title\='" +
 					tab.title
 					+"'",
 			    true);
@@ -30,7 +32,10 @@ iStat.onTabUpdate = function(tabId, changeInfo, tab){
 			if (req2.readyState==4){
 				//alert("status" + req2.status);
 				if(req2.status!=404){
-					
+					var obj = jQuery.parseJSON(req2.responseText);
+					if(obj.return_code != 0)
+						alert(obj.message);
+						
 					//var rez = jsonParse(req2.toString());
 					
 				}
