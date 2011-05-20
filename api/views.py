@@ -65,7 +65,7 @@ def get_most_visited_pages (request):
         if url is None:
             return HttpResponse("error in params")
             
-        website_url = re.match("((http://www\.)|(http://)|(www\.))(?P<url>[\w.\-:]+)", url)
+        website_url = re.match("'?((http://www\.)|(http://)|(www\.))(?P<url>[\w.\-:]+)'?", url)
         
         if website_url is None:
             return HttpResponse("error matching website")
