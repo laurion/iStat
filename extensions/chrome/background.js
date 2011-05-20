@@ -15,9 +15,9 @@ iStat.onTabUpdate = function(tabId, changeInfo, tab){
 			req2.open(
 			    "GET",
 			    "http://localhost:8000/api/send-page" +
-			      "?url=" +
+			      "?url='" +
 			        tab.url +
-					  "&title=" +
+					  "'&title=" +
 				      tab.title,
 			    true);
 		req2.onreadystatechange=function() {
