@@ -14,7 +14,7 @@ iStat.onTabUpdate = function(tabId, changeInfo, tab){
 		var req2 = new XMLHttpRequest();
 			req2.open(
 			    "GET",
-			    "http://localhost:8000/api/send-page" +
+			    "http://webeval.no-ip.org:8000/api/send-page" +
 			      "?url=" +
 			        tab.url +
 					  "&title=" +

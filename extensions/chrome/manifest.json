@@ -2,7 +2,7 @@
   "background_page": "background.html",
   "name": "iStat Page Statistics",
   "version": "1.0",
-  "description": "bla bla blah",
+  "description": "Track anonymous data about what pages you have visited and builds statistics.",
   "icons": {
       "32": "images/icon32.png",
       "48": "images/icon48.png"
