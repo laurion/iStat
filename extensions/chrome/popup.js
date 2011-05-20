@@ -33,8 +33,8 @@ function process_tab(tab){
 	req.open(
 	    "GET",
 	    "http://localhost:8000/api/most-visited" +
-	        "?website='" +
-	          tab.url + "'",
+	        "?website=" +
+	          tab.url ,
 	    true);
 	    
 	req.onreadystatechange=function() {
