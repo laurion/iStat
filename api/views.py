@@ -76,10 +76,19 @@ def get_most_visited_pages (request):
         
         pages = Page.objects.filter(website = website).order_by("-cached_views")
         
-        return render_to_response("get_most_visited_pages.json",
-                                  {
-                                    'pages' : pages,
-                                    'website' : website,
-                                  },
-                                  context_instance = RequestContext(request)
-                                 )
+        if 'html' in request.GET and request.GET['html'] == 'true':
+            return render_to_response("get_most_visited_pages.html",
+                                      {
+                                        'pages' : pages,
+                                        'website' : website,
+                                      },
+                                      context_instance = RequestContext(request)
+                                     )
+        else:
+            return render_to_response("get_most_visited_pages.json",
+                                      {
+                                        'pages' : pages,
+                                        'website' : website,
+                                      },
+                                      context_instance = RequestContext(request)
+                                     )

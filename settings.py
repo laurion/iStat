@@ -107,8 +107,10 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'iStat.urls'
 
 TEMPLATE_DIRS = (
-    os.path.join(os.path.dirname(__file__), 'api', 'public', 'html')
+    os.path.join(os.path.dirname(__file__), 'api', 'public', 'html'),
 )
+
+STATIC_DOC_ROOT = os.path.join(os.path.dirname(__file__), 'api', 'public', 'static')
 
 INSTALLED_APPS = (
     'django.contrib.auth',

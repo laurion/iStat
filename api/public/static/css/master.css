@@ -1,0 +1,45 @@
+* {
+  margin: 0px;
+  border: 0px !important;
+  padding: 0px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.container {
+  margin: 0px;
+  width: 100%;
+}
+
+td, th {
+  padding: 5px 10px;
+  border: 0px;
+  margin: 0px;
+}
+
+td {
+  text-align: left;
+  border: 0px;
+  margin: 0px;
+}
+
+thead {
+  background: #f47326;
+}
+
+th {
+  text-align: left;
+  color: white;
+}
+
+.content {
+  background: #fdfab3;
+}
+
+.content:hover {
+  background: #f9f69e;
+}
+
+.views {
+  width: 20%;
+}
+
