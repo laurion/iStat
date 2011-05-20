@@ -5,8 +5,8 @@
 		  "title": "{{ page.title }}",
 		  "long_url": "{{ page.long_url }}",
 		  "short_url": "{{ page.short_url }}",
-		  "cached_views": {{ page.cached_views }},
-	  },	
+		  "cached_views": {{ page.cached_views }}
+	  }{% if forloop.counter != pages.count %},{% endif %}	
 	  {% endfor %}
 	]
 }
