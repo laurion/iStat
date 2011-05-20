@@ -64,7 +64,15 @@ def get_most_visited_pages (request):
         
         if url is None:
             return HttpResponse("error in params")
-        website = get_object_or_None(WebSite, url = url)
+            
+        website_url = re.match("((http://www\.)|(http://)|(www\.))(?P<url>[\w.\-:]+)", url)
+        
+        if website_url is None:
+            return HttpResponse("error matching website")
+            
+        website_url = website_url.group('url')
+        
+        website = get_object_or_None(WebSite, url = website_url)
         
         pages = Page.objects.filter(website = website).order_by("-cached_views")
         
