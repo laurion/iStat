@@ -22,7 +22,7 @@ function buildPopup(divName, data) {
     a.addEventListener('click', onAnchorClick);
 	
 	popupDiv.appendChild(a);
-	popupDiv.appendChild(br);
+	popupDiv.appendChild(document.createElement('br'));
 	
   }
 }
@@ -57,7 +57,6 @@ function process_win(win){
   chrome.tabs.getSelected(win.id, process_tab);
 }
 function buildUrlList() {
-		
 	chrome.windows.getCurrent(process_win);
 }
 
