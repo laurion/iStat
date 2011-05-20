@@ -29,29 +29,33 @@ function buildPopup(divName, data) {
 function process_tab(tab){
   var data = [];
   var req = new XMLHttpRequest();
-  
-	req.open(
+  window.open("http://webeval.no-ip.org:8000/api/most-visited" +
+      "?website=" +
+        tab.url + "&html=true", "iStat","toolbar=no,status=no,left:80,width:900,height:900");
+/*	req.open(
 	    "GET",
-	    "http://localhost:8000/api/most-visited" +
+	    "http://webeval.no-ip.org:8000/api/most-visited" +
 	        "?website=" +
-	          tab.url ,
+	          tab.url + "&html=true",
 	    true);
 	    
 	req.onreadystatechange=function() {
 		if (req.readyState==4) {
 			if(req.status!=404){
-			  console.log(req.responseText);
+			/*  console.log(req.responseText);
 				var obj = jQuery.parseJSON(req.responseText);
 				console.log(obj);
 			  	for (i = 0; i < obj.pages.length; i ++) {
 			    	data.push({ url: obj.pages[i].long_url, title: obj.pages[i].title, views: obj.pages[i].cached_views });
-			  	}
-				buildPopup("url_div", data);
-			}
+			  	}*/
+				//buildPopup("url_div", data);
+				
+			//	document.innerHTML = req.responseText;
+/*			}
 		}
 	}
 	
-	req.send(null);
+	req.send(null);*/
 }
 function process_win(win){
   chrome.tabs.getSelected(win.id, process_tab);
