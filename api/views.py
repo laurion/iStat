@@ -22,7 +22,7 @@ def send_page (request):
         if url is None or title is None:
             return HttpResponse("error in params")
         
-        website_url = re.match("((http://www\.)|(http://)|(www\.))(?P<url>[\w.\-:]+)", url)
+        website_url = re.match("((https://www\.)|(https://)|(http://www\.)|(http://)|(www\.))(?P<url>[\w.\-:]+)", url)
         
         if website_url is None:
             return HttpResponse("error matching website")
@@ -66,7 +66,7 @@ def get_most_visited_pages (request):
         if url is None:
             return HttpResponse("error in params")
             
-        website_url = re.match(r"((http://www\.)|(http://)|(www\.))(?P<url>[\w.\-:]+)", url)
+        website_url = re.match("((https://www\.)|(https://)|(http://www\.)|(http://)|(www\.))(?P<url>[\w.\-:]+)", url)
         
         if website_url is None:
             return HttpResponse("error matching website")
