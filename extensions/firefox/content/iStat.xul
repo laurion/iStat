@@ -3,7 +3,6 @@
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
     <script type="application/x-javascript" src="https://d3nwyuy0nl342s.cloudfront.net/f983e12b06bd9e041c4e1d7164ed56131fbf413c/javascripts/jquery/jquery-1.4.2.min.js" />
     <script type="application/x-javascript" src="chrome://iStat/content/config.js" />
-    <script type="application/x-javascript" src="chrome://iStat/content/popup.js" />
     <script type="application/x-javascript" src="chrome://iStat/content/iStat.js" />
     
     <toolbox id="navigator-toolbox">

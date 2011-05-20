@@ -22,11 +22,7 @@ function populatePopup (response) {
 function makeRequest (url, params, getVisited) {
   var http = new XMLHttpRequest();
   http.open("GET", url + "?" + params, true);
-  Firebug.Console.log(url);
-  Firebug.Console.log(params);
   http.onreadystatechange = function() {
-    Firebug.Console.log(http.readyState);
-    Firebug.Console.log(http.status);
   	if(http.readyState == 4 && http.status == 200) {
   	    var response = http.responseText;
   	    if (getVisited) {
