@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>iStat page statistics</title>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8000/xstatic/css/master.css" />
+  </head>
+  <body>
+    <table class="container" id="visited-pages-table">
+      <thead>
+        <th class="title">Title</th>
+        <th class="views">Views</th>
+      </thead>
+      <tbody>
+      {% for page in pages %}
+        <tr class="content" onclick="window.open('{{ page.long_url }}'); window.close();">
+          <td class="title">{{ page.title }}</td>
+          <td class="views">{{ page.cached_views }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
