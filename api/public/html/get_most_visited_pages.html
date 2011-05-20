@@ -12,7 +12,7 @@
       <tbody>
       {% for page in pages %}
         <tr class="content" onclick="window.open('{{ page.long_url }}'); window.close();">
-          <td class="title">{{ page.title }}</td>
+          <td class="title">{% if page.title %}{{ page.title }}{% else %}{{ page.long_url }}{% endif %}</td>
           <td class="views">{{ page.cached_views }}</td>
         </tr>
       {% endfor %}
