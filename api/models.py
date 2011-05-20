@@ -26,4 +26,4 @@ class Entry(models.Model):
     ip = models.CharField(max_length=16)
     
     def __unicode__ (self):
-        return self.id
+        return str(self.id)
