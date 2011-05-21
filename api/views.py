@@ -74,7 +74,7 @@ def get_most_visited_pages (request):
         
         website = get_object_or_None(WebSite, url = website_url)
         
-        pages = Page.objects.filter(website = website).order_by("-cached_views")
+        pages = Page.objects.filter(website = website).order_by("-cached_views")[:20]
         
         if 'html' in request.GET and request.GET['html'] == 'true':
             return render_to_response("get_most_visited_pages.html",
