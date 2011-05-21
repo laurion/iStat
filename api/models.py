@@ -23,7 +23,6 @@ class Page(models.Model):
 class Entry(models.Model):
     timestamp = models.DateTimeField()
     page = models.ForeignKey(Page)
-    ip = models.CharField(max_length=16)
     
     def __unicode__ (self):
         return str(self.id)

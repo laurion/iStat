@@ -17,7 +17,7 @@ def send_page (request):
     if request.method == 'GET':
         url = request.GET.get('url')
         title = request.GET.get('title')
-        this_ip = get_ip_from_request(request)
+        #this_ip = get_ip_from_request(request)
        
         if url is None or title is None:
             return HttpResponse("error in params")
@@ -38,9 +38,9 @@ def send_page (request):
             page = Page(long_url = url, title = title, website = website)
             page.save()
             
-        entry = get_object_or_None(Entry, page = page, ip = this_ip)
+        entry = get_object_or_None(Entry, page = page)
         if entry is None:
-            entry = Entry(timestamp = datetime.datetime.now(), page = page, ip = this_ip)
+            entry = Entry(timestamp = datetime.datetime.now(), page = page)
             entry.save()
             
         page.cached_views += 1
