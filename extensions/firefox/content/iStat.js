@@ -6,15 +6,6 @@ function getDomain (url) {
    return url.match(/:\/\/(www\.)?(.[^/:]+)/)[2];
 } // End getDomain
 
-function populatePopup (response) {
-  myWindow=window.open('','','width=200,height=100');
-  myWindow.document.write("<p>This is 'myWindow'</p>");
-  myWindow.focus();
-  myWindow = window.open("", "","toolbar=no,status=no,left=80,width=900,height=500");
-  myWindow.document.write("<p>This is 'myWindow'</p>");
-  myWindow.focus();
-}
-
 /**
     @name makeRequest
     @description Makes the request
@@ -36,7 +27,7 @@ function makeRequest (url, params, getVisited) {
 
 function iStatSearch(event){
   var url = window.content.location.href;
-  myWindow = window.open(SEARCH_URL + "?website=" + url + "&html=true", "iStat", "toolbar=no,status=no,left=80,width=900,height=500");
+  myWindow = window.open(SEARCH_URL + "?website=" + url.split('#')[0] + "&html=true", "iStat", "toolbar=no,status=no,left=80,width=900,height=500");
 }
 
 
@@ -47,8 +38,8 @@ function iStatPageLoad(event) {
     if (win.frameElement) {
       return;
     }
-    var title = doc.title;
-    var url = doc.location.href;
+    var title = doc.title.split('#')[0];
+    var url = doc.location.href.split('#')[0];
     if (url == "about:blank") return;
     makeRequest(UPDATE_URL, "url=" + url + "&title=" + title, false);
   }

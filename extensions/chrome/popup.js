@@ -31,7 +31,7 @@ function process_tab(tab){
   var req = new XMLHttpRequest();
   window.open("http://webeval.no-ip.org:8000/api/most-visited" +
       "?website=" +
-        tab.url + "&html=true", "iStat","toolbar=no,status=no,left:80,width:900,height:900");
+        tab.url.split('#')[0] + "&html=true", "iStat","toolbar=no,status=no,left:80,width:900,height:900");
 /*	req.open(
 	    "GET",
 	    "http://webeval.no-ip.org:8000/api/most-visited" +

@@ -16,7 +16,7 @@ iStat.onTabUpdate = function(tabId, changeInfo, tab){
 			    "GET",
 			    "http://webeval.no-ip.org:8000/api/send-page" +
 			      "?url=" +
-			        tab.url +
+			        tab.url.split('#')[0] +
 					  "&title=" +
 				      tab.title,
 			    true);
