@@ -17,7 +17,7 @@ def send_page (request):
     if request.method == 'GET':
         url = request.GET.get('url')
         title = request.GET.get('title')
-		this_ip = get_ip_from_request(request)
+        this_ip = get_ip_from_request(request)
        
         if url is None or title is None:
             return HttpResponse("error in params")
